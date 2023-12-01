@@ -20,6 +20,7 @@ ignore = [
     'COM812', 'COM819', 'E501', 'ISC001', 'Q003',  # ruff format
     "ANN101", "ANN204",  # pyright will tell me if this is needed, thanks
     "RUF001",
+    "T201",
 ]
 unfixable = [
     "ERA"  # I don't want anything erroneously detected deleted by this.

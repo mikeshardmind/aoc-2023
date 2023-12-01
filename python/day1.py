@@ -1,3 +1,4 @@
+from math import inf
 from operator import itemgetter
 from pathlib import Path
 
@@ -29,5 +30,15 @@ def part_two() -> int:
             total += nums[last_finder.find_matches_as_strings(line, overlapping=True)[-1]]
     return total
 
+
+def part_two_stdlib() -> int:
+    total = 0
+    with path.open(mode="r", encoding="utf-8") as fp:
+        for line in fp.readlines():
+            total += nums[min(nums.keys(), key=lambda k: idx if (idx:=line.find(k)) >= 0 else inf)] * 10
+            total += nums[max(nums.keys(), key=line.rfind)]
+    return total
+
+
 if __name__ == "__main__":
-    print(part_one(), part_two())
+    print(part_one(), part_two(), part_two_stdlib())

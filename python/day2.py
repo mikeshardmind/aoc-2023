@@ -39,10 +39,7 @@ def part_one() -> int:
 
 
 def part_two() -> int:
-    return sum(
-        reduce(mul, filter(None, game.values()))
-        for _game_num, game in gamerow_iterator()
-    )
+    return sum(reduce(mul, filter(None, game.values())) for _game_num, game in gamerow_iterator())
 
 
 if __name__ == "__main__":

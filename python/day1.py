@@ -6,11 +6,14 @@ from ahocorasick_rs import AhoCorasick, MatchKind
 
 path = Path(__file__).parent.with_name("inputs") / "day1.txt"
 
+
 def part_one() -> int:
     getter = itemgetter(0, -1)
     with path.open(mode="r", encoding="utf-8") as fp:
         return sum(map(int, ("".join(getter([*filter(str.isdigit, line)])) for line in fp.readlines())))
 
+
+# fmt: off
 nums = {
     '0': 0, 'zero': 0, '1': 1, 'one': 1,
     '2': 2, 'two': 2, '3': 3, 'three': 3,
@@ -18,9 +21,11 @@ nums = {
     '6': 6, 'six': 6, '7': 7, 'seven': 7,
     '8': 8, 'eight': 8, '9': 9, 'nine': 9
 }
+# fmt: on
 
 first_finder = AhoCorasick(nums.keys(), matchkind=MatchKind.LeftmostFirst)
 last_finder = AhoCorasick(nums.keys(), matchkind=MatchKind.Standard)
+
 
 def part_two() -> int:
     total = 0
@@ -35,7 +40,7 @@ def part_two_stdlib() -> int:
     total = 0
     with path.open(mode="r", encoding="utf-8") as fp:
         for line in fp.readlines():
-            total += nums[min(nums.keys(), key=lambda k: idx if (idx:=line.find(k)) >= 0 else inf)] * 10
+            total += nums[min(nums.keys(), key=lambda k: idx if (idx := line.find(k)) >= 0 else inf)] * 10
             total += nums[max(nums.keys(), key=line.rfind)]
     return total
 
